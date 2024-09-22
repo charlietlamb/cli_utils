@@ -1,6 +1,5 @@
-use std::env;
-use std::path::Path;
 use crate::cwd;
+use std::path::Path;
 
 pub fn cd(input: Vec<String>) {
     if input.len() < 2 {

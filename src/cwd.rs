@@ -23,12 +23,11 @@ pub fn set_cwd(path: PathBuf) {
 }
 
 pub fn print_cwd() {
-    let cwd = get_cwd();
-    print!("{}:", cwd.display());
+    print!("{}:", get_cwd().display());
     match io::stdout().flush() {
         Ok(_) => (),
         Err(e) => {
-            println!("Failed to flush stdout(): {e}");
+            eprintln!("Failed to flush stdout(): {e}");
             std::process::exit(1);
         }
     }

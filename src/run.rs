@@ -5,16 +5,19 @@ use std::io;
 
 pub fn run() {
     loop {
-        let input = get_next_input();
-        command(input);
+        command(get_next_input());
     }
 }
 
 fn get_next_input() -> Vec<String> {
     let mut input = String::new();
-    cwd::print_cwd();
-    io::stdin()
-        .read_line(&mut input)
-        .expect("Failed tor read input");
+    let mut cont = true;
+    while cont {
+        cwd::print_cwd();
+        match io::stdin().read_line(&mut input) {
+            Ok(inp) => cont = inp == 1,
+            Err(_) => cont = true,
+        }
+    }
     utils::split_input(&input)
 }

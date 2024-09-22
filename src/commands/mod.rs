@@ -6,4 +6,5 @@ mod find;
 mod grep;
 mod grep_all;
 mod grep_flags;
+mod help;
 mod ls;

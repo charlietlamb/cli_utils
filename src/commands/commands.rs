@@ -3,6 +3,7 @@ use crate::commands::cd;
 use crate::commands::echo;
 use crate::commands::find;
 use crate::commands::grep;
+use crate::commands::help;
 use crate::commands::ls;
 pub fn command(input: Vec<String>) {
     match input[0].trim() {
@@ -12,6 +13,7 @@ pub fn command(input: Vec<String>) {
         "find" => find::find(input),
         "cat" => cat::cat(input),
         "grep" => grep::grep(input),
+        "help" => help::help(),
         "exit" => std::process::exit(0),
         _ => println!("Please enter a valid command.\nRun help to learn more."),
     };

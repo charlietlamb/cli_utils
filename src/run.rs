@@ -1,6 +1,7 @@
-use std::io::{self, Write};
-use std::env;
+use std::io;
 use crate::command::command;
+use crate::utils;
+use crate::cwd;
 
 pub fn run(){
     loop{
@@ -9,31 +10,11 @@ pub fn run(){
     }
 }
 
-fn print_cwd(){
-    match env::current_dir(){
-        Ok(path) => {
-            print!("{}: ",path.display());
-            match io::stdout().flush(){
-                Ok(_) => (),
-                Err(e) => {
-                    println!("Failed to flush stdout(): {e}");
-                    std::process::exit(1);
-                }
 
-            }
-        },
-        Err(e) => {
-            println!("{e}");
-            std::process::exit(1);
-        }
-
-    };
-}
-
-fn get_next_input() -> String{
+fn get_next_input() -> Vec<String>{
     let mut input = String::new();
-    print_cwd();
+    cwd::print_cwd();
     io::stdin().read_line(&mut input).expect("Failed tor read input");
-    input
+    utils::split_input(&input)
 
 }
